@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://img/level/floor.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=2]
+[ext_resource path="res://img/level/walls.png" type="Texture" id=3]
+
+[node name="Game" type="Node2D" index="0"]
+
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Floor" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.535, 0.555 )
+texture = ExtResource( 1 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Snake" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 508, 671 )
+
+[node name="Walls" type="Sprite" parent="." index="2"]
+
+scale = Vector2( 0.535, 0.555 )
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+
