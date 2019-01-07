@@ -12,17 +12,13 @@ var SNAKE_SPAWN_POINT
 var SNAKE_SPAWN_DIR = Vector2(0, -1)
 
 var tailScene = preload("res://scenes/Tail.tscn")
-var tail = null
 var bodyScene = preload("res://scenes/Body.tscn")
 
 var DEBUG = false
 
-func _init():
-	tail = tailScene.instance()
-
 func _ready():
 	SNAKE_SPAWN_POINT = snake.position
-	title_tween.interpolate_property(label, 'rect_position', Vector2(label.rect_position.x, -200.0), label.rect_position, 1.0, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0)
+	
 		
 	game_init()
 
@@ -38,7 +34,7 @@ func _on_Snake_direction_changed(corner):
 
 func grow():
 	var newPart = bodyScene.instance()
-	newPart.z_index = 100 - trail.get_child_count()
+	newPart.z_index = 5 + trail.get_child_count()
 	trail.add_child(newPart)
 
 func game_init():
@@ -46,10 +42,13 @@ func game_init():
 	while trail.get_child_count() :
 		trail.remove_child(trail.get_children().pop_back())
 	
-	print("cleanup : ", trail.get_child_count())
-	
+
 	# empty trail
 	trail.curve.clear_points()
+	
+	label.visible = false
+	
+	
 	
 			
 	# init game
@@ -60,8 +59,11 @@ func game_init():
 	
 	trail.curve.add_point(Vector2(snake.position.x, snake.position.y - SNAKE_SPAWN_DIR.y * ((SNAKE_START_LENGTH + 2) * SNAKE_PARTS_DISTANCE))) # this is the beginning of a trail
 	trail.curve.add_point(snake.position) # adding the location of the head which is to be updated
+	print("breakpoint")
 	
+	var tail  = tailScene.instance()
 	trail.add_child(tail)
+	
 	tail.z_index = 1
 	
 	# grow the snake 
@@ -70,9 +72,14 @@ func game_init():
 
 func _on_Snake_crashed():
 	label.visible = true
-	title_tween.start()
 	get_tree().paused = true
+	
+	title_tween.interpolate_property(label, 'rect_position', Vector2(label.rect_position.x, -200.0), label.rect_position, 1.0, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0)
+	title_tween.start()
+	
 	print("crashed!")
+	print(snake.position)
+	print(trail.get_children()[0].position)
 	
 	#test_powerup.spawn()
 	

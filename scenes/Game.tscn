@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://img/level/floor.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/GameControl.gd" type="Script" id=5]
 [ext_resource path="res://fonts/GEEKABYTE.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -172,6 +173,15 @@ _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Mouse", "Pause", "R
 pause_mode = 2
 position = Vector2( 188, 145 )
 _sections_unfolded = [ "Pause", "Transform", "Visibility" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="crashed" from="Snake" to="." method="_on_Snake_crashed"]
 

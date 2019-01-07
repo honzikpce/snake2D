@@ -70,6 +70,7 @@ func _process(delta):
 func _on_head_area_entered(area) :
 	
 	if area.get_collision_layer_bit(1) or area.get_collision_layer_bit(2) :
+		print(area)
 		emit_signal('crashed')
 	if area.get_collision_layer_bit(3) :
 		print("pickable")

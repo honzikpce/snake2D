@@ -17,7 +17,7 @@ rotate = true
 cubic_interp = true
 loop = true
 lookahead = 4.0
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
@@ -35,6 +35,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Area2D" index="0"]
 
+position = Vector2( 0.000133352, 36 )
 rotation = 1.5708
 scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 1 )
@@ -42,7 +43,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-scale = Vector2( 1.84614, 2.30435 )
+position = Vector2( 0.000175963, 40.295 )
+scale = Vector2( 1.84614, 1.88239 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
