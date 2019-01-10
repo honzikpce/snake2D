@@ -69,8 +69,15 @@ func _process(delta):
 
 func _on_head_area_entered(area) :
 	
+	# walls and body
 	if area.get_collision_layer_bit(1) or area.get_collision_layer_bit(2) :
 		print(area)
 		emit_signal('crashed')
+	# pickable
 	if area.get_collision_layer_bit(3) :
 		print("pickable")
+	# traps
+	if area.get_collision_layer_bit(4) :
+		var player = area.get_node("animplayer")
+		player.play("anim")
+		

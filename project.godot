@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 2d_physics/layer_2="snake_body"
 2d_physics/layer_3="walls"
 2d_physics/layer_4="pickable"
+2d_physics/layer_5="traps"
 
 [rendering]
 

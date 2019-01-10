@@ -6,8 +6,8 @@
 [ext_resource path="res://img/level/walls.png" type="Texture" id=4]
 [ext_resource path="res://scenes/GameControl.gd" type="Script" id=5]
 [ext_resource path="res://fonts/GEEKABYTE.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=8]
+[ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -32,10 +32,11 @@ _sections_unfolded = [ "Font", "Resource", "Settings" ]
 [node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Floor" type="Sprite" parent="." index="0"]
 
+position = Vector2( 1, -1 )
 scale = Vector2( 0.535, 0.555 )
 texture = ExtResource( 2 )
 centered = false
@@ -43,7 +44,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Snake" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 511, 667 )
+position = Vector2( 511, 665.493 )
 
 [node name="walls-area" type="Area2D" parent="." index="2"]
 
@@ -168,20 +169,20 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Mouse", "Pause", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
 
-[node name="powerup" parent="." index="7" instance=ExtResource( 7 )]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
 
-pause_mode = 2
-position = Vector2( 188, 145 )
-_sections_unfolded = [ "Pause", "Transform", "Visibility" ]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
-
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
+
+[node name="barrel" parent="." index="8" instance=ExtResource( 8 )]
+
+position = Vector2( 372.313, 265.292 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [connection signal="crashed" from="Snake" to="." method="_on_Snake_crashed"]
 
