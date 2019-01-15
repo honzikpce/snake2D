@@ -29,7 +29,7 @@ use_filter = false
 font_data = ExtResource( 6 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
@@ -45,6 +45,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 [node name="Snake" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 511, 665.493 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="walls-area" type="Area2D" parent="." index="2"]
 
@@ -178,10 +179,40 @@ autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="barrel" parent="." index="8" instance=ExtResource( 8 )]
+[node name="barrel1" parent="." index="8" instance=ExtResource( 8 )]
 
-position = Vector2( 372.313, 265.292 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 208.313, 166.292 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="barrel2" parent="." index="9" instance=ExtResource( 8 )]
+
+position = Vector2( 802.313, 151.292 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="barrel5" parent="." index="10" instance=ExtResource( 8 )]
+
+position = Vector2( 803.313, 288.292 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="barrel6" parent="." index="11" instance=ExtResource( 8 )]
+
+position = Vector2( 803.313, 432.292 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="barrel3" parent="." index="12" instance=ExtResource( 8 )]
+
+position = Vector2( 214.313, 434.292 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="barrel4" parent="." index="13" instance=ExtResource( 8 )]
+
+position = Vector2( 211.313, 289.292 )
+scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [connection signal="crashed" from="Snake" to="." method="_on_Snake_crashed"]

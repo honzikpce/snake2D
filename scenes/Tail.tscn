@@ -8,7 +8,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[node name="tail" type="PathFollow2D" index="0"]
+[node name="tail" type="PathFollow2D"]
 
 offset = 0.0
 h_offset = 0.0
@@ -21,6 +21,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
+position = Vector2( 21, -4.08885e-06 )
 rotation = 1.5708
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -37,14 +38,14 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 position = Vector2( 0.000133352, 36 )
 rotation = 1.5708
-scale = Vector2( 0.08, 0.08 )
+scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-position = Vector2( 0.000175963, 40.295 )
-scale = Vector2( 1.84614, 1.88239 )
+position = Vector2( 0.000175963, 41 )
+scale = Vector2( 1.53845, 1.17392 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 

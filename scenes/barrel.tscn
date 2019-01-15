@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ 0, 19 ]
 }
 
-[node name="barrel" type="Area2D"]
+[node name="barrel" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -41,16 +41,19 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+position = Vector2( 2.18628, 0 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
 offset = Vector2( 28, 0 )
 vframes = 5
 hframes = 4
-_sections_unfolded = [ "Animation", "Offset" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 30 )
-scale = Vector2( 9.83492, 9.83492 )
+visible = false
+position = Vector2( 4.5, 3 )
+scale = Vector2( 1.80769, 2 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 

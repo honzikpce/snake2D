@@ -6,7 +6,7 @@ onready var title_tween = get_node('title_tween')
 onready var label = get_node("Label")
 onready var test_powerup = get_node("powerup")
 
-var SNAKE_PARTS_DISTANCE = 30
+var SNAKE_PARTS_DISTANCE = 18
 var SNAKE_START_LENGTH = 10
 var SNAKE_SPAWN_POINT
 var SNAKE_SPAWN_DIR = Vector2(0, -1)
@@ -23,10 +23,13 @@ func _ready():
 	game_init()
 
 func _process(delta):
+	
+	# set end point of the curve to the new position of the head
 	trail.curve.set_point_position(trail.curve.get_point_count()-1, Vector2(snake.position.x, snake.position.y))
 		
+	# cycle from first body part to tail and set their offsets
 	for i in range(0, trail.get_child_count()) :
-		trail.get_child(i).offset = trail.curve.get_baked_length() - SNAKE_PARTS_DISTANCE * (trail.get_child_count() - i)
+		trail.get_child(i).offset = trail.curve.get_baked_length() - SNAKE_PARTS_DISTANCE * (i + 1)	
 
 func _on_Snake_direction_changed(corner):
 	trail.curve.set_point_position(trail.curve.get_point_count()-1, corner) # change last point to last direction change point
@@ -42,15 +45,11 @@ func game_init():
 	while trail.get_child_count() :
 		trail.remove_child(trail.get_children().pop_back())
 	
-
 	# empty trail
 	trail.curve.clear_points()
 	
 	label.visible = false
-	
-	
-	
-			
+				
 	# init game
 	snake.position = SNAKE_SPAWN_POINT
 	snake.cur_direction = SNAKE_SPAWN_DIR
@@ -61,14 +60,14 @@ func game_init():
 	trail.curve.add_point(snake.position) # adding the location of the head which is to be updated
 	print("breakpoint")
 	
-	var tail  = tailScene.instance()
-	trail.add_child(tail)
-	
-	tail.z_index = 1
-	
 	# grow the snake 
 	for i in range(1,SNAKE_START_LENGTH) :
 		grow()
+
+# add the tail to the end
+	var tail  = tailScene.instance()
+	trail.add_child(tail)
+	tail.z_index = 99
 
 func _on_Snake_crashed():
 	label.visible = true
