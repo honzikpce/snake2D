@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Knight 1.png-d40f1f9b8db1007c9969428d2828e2f1.stex"
+path="res://.import/knight.png-dc060ec40823d438bdf918d4d97905ff.stex"
 
 [deps]
 
-source_file="res://img/enemy/Knight 1.png"
-dest_files=[ "res://.import/Knight 1.png-d40f1f9b8db1007c9969428d2828e2f1.stex" ]
+source_file="res://img/enemy/knight.png"
+dest_files=[ "res://.import/knight.png-dc060ec40823d438bdf918d4d97905ff.stex" ]
 
 [params]
 
@@ -17,11 +17,11 @@ compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
-process/premult_alpha=true
+process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0

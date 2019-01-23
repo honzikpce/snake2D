@@ -2,11 +2,12 @@ extends Node2D
 
 onready var trail = get_node('SnakeTrail')
 onready var snake = get_node('Snake')
+
 onready var title_tween = get_node('title_tween')
 onready var label = get_node("Label")
 onready var test_powerup = get_node("powerup")
 
-var SNAKE_PARTS_DISTANCE = 18
+var SNAKE_PARTS_DISTANCE = 25
 var SNAKE_START_LENGTH = 10
 var SNAKE_SPAWN_POINT
 var SNAKE_SPAWN_DIR = Vector2(0, -1)
@@ -37,7 +38,7 @@ func _on_Snake_direction_changed(corner):
 
 func grow():
 	var newPart = bodyScene.instance()
-	newPart.z_index = 5 + trail.get_child_count()
+	newPart.z_index = 90 - trail.get_child_count()
 	trail.add_child(newPart)
 
 func game_init():
@@ -66,8 +67,15 @@ func game_init():
 
 # add the tail to the end
 	var tail  = tailScene.instance()
+	var tail_anim = tail.get_node("Area2D/animplayer")
+	tail_anim.play("tail_animation")
 	trail.add_child(tail)
-	tail.z_index = 99
+	# tail is supposed to be under body parts but under background objects
+	tail.z_index = 5
+	
+	# knight test
+	$knight/animplayer.play("idle")
+	
 
 func _on_Snake_crashed():
 	label.visible = true

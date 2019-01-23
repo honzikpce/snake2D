@@ -21,6 +21,8 @@ func reset() :
 func _ready():
 	$head/Sprite.z_index = 100
 	
+	$head/animplayer.play("head_animation")
+	
 func _process(delta):
 	
 	# process input and adjust direction if controls pressed

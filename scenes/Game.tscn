@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
-[ext_resource path="res://img/level/floor.jpg" type="Texture" id=2]
-[ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=2]
+[ext_resource path="res://img/level/floor.jpg" type="Texture" id=3]
 [ext_resource path="res://img/level/walls.png" type="Texture" id=4]
 [ext_resource path="res://scenes/GameControl.gd" type="Script" id=5]
 [ext_resource path="res://fonts/GEEKABYTE.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/knight.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -29,23 +30,23 @@ use_filter = false
 font_data = ExtResource( 6 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
-[node name="Floor" type="Sprite" parent="." index="0"]
-
-position = Vector2( 1, -1 )
-scale = Vector2( 0.535, 0.555 )
-texture = ExtResource( 2 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="Snake" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Snake" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 511, 665.493 )
 _sections_unfolded = [ "Visibility" ]
+
+[node name="Floor" type="Sprite" parent="." index="1"]
+
+position = Vector2( 1, -1 )
+scale = Vector2( 0.535, 0.555 )
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="walls-area" type="Area2D" parent="." index="2"]
 
@@ -181,7 +182,7 @@ bus = "Master"
 
 [node name="barrel1" parent="." index="8" instance=ExtResource( 8 )]
 
-position = Vector2( 208.313, 166.292 )
+position = Vector2( 202.313, 150.292 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
@@ -205,15 +206,19 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="barrel3" parent="." index="12" instance=ExtResource( 8 )]
 
-position = Vector2( 214.313, 434.292 )
+position = Vector2( 208.313, 418.292 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="barrel4" parent="." index="13" instance=ExtResource( 8 )]
 
-position = Vector2( 211.313, 289.292 )
+position = Vector2( 205.313, 273.292 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="knight" parent="." index="14" instance=ExtResource( 9 )]
+
+position = Vector2( 330, 184 )
 
 [connection signal="crashed" from="Snake" to="." method="_on_Snake_crashed"]
 
