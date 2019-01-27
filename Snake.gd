@@ -1,6 +1,8 @@
 extends Node2D
 
 signal direction_changed(corner)
+signal emit_coins(position, number)
+signal coin_picked_up(coin)
 signal crashed()
 
 var cur_direction = Vector2(0, -1)
@@ -73,13 +75,14 @@ func _on_head_area_entered(area) :
 	
 	# walls and body
 	if area.get_collision_layer_bit(1) or area.get_collision_layer_bit(2) :
-		print(area)
 		emit_signal('crashed')
 	# pickable
 	if area.get_collision_layer_bit(3) :
-		print("pickable")
+		emit_signal('coin_picked_up', area) # if it is coin -todo
 	# traps
 	if area.get_collision_layer_bit(4) :
 		var player = area.get_node("animplayer")
+		if area.name.find("barrel",0) == 0 :
+			emit_signal("emit_coins", area.position, 5)
 		player.play("anim")
 		

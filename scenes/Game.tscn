@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/knight.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/CoinCounter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/LifeCounter.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -38,7 +40,8 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 [node name="Snake" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 511, 665.493 )
-_sections_unfolded = [ "Visibility" ]
+z_index = 0
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
@@ -46,11 +49,13 @@ position = Vector2( 1, -1 )
 scale = Vector2( 0.535, 0.555 )
 texture = ExtResource( 3 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="walls-area" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 scale = Vector2( 0.535, 0.555 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -61,7 +66,10 @@ collision_layer = 4
 collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Pickable" ]
+_sections_unfolded = [ "Collision", "Pickable", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls-area" index="0"]
 
@@ -117,6 +125,9 @@ z_index = 101
 texture = ExtResource( 4 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="SnakeTrail" type="Path2D" parent="." index="3"]
 
@@ -138,7 +149,7 @@ _sections_unfolded = [ "Pause" ]
 [node name="GameControl" type="Node2D" parent="." index="5"]
 
 pause_mode = 2
-position = Vector2( 0, 164 )
+position = Vector2( -51.4425, 52.9924 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Pause" ]
 
@@ -182,46 +193,65 @@ bus = "Master"
 
 [node name="barrel1" parent="." index="8" instance=ExtResource( 8 )]
 
-position = Vector2( 202.313, 150.292 )
+position = Vector2( 318.782, 166.787 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="barrel2" parent="." index="9" instance=ExtResource( 8 )]
 
-position = Vector2( 802.313, 151.292 )
+position = Vector2( 684.325, 172.837 )
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
+
+[node name="barrel6" parent="." index="10" instance=ExtResource( 8 )]
+
+position = Vector2( 681.921, 411.865 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="barrel5" parent="." index="10" instance=ExtResource( 8 )]
+[node name="barrel3" parent="." index="11" instance=ExtResource( 8 )]
 
-position = Vector2( 803.313, 288.292 )
+position = Vector2( 317.499, 417.309 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="barrel6" parent="." index="11" instance=ExtResource( 8 )]
+[node name="knight" parent="." index="12" instance=ExtResource( 9 )]
 
-position = Vector2( 803.313, 432.292 )
-scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Collision", "Transform" ]
+position = Vector2( 322.78, 287.788 )
+rotation = 4.71239
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="barrel3" parent="." index="12" instance=ExtResource( 8 )]
+[node name="UI" type="Node2D" parent="." index="13"]
 
-position = Vector2( 208.313, 418.292 )
-scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Collision", "Transform" ]
+editor/display_folded = true
+z_index = 500
+_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="barrel4" parent="." index="13" instance=ExtResource( 8 )]
+[node name="CoinCounter" parent="UI" index="0" instance=ExtResource( 10 )]
 
-position = Vector2( 205.313, 273.292 )
-scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Collision", "Transform" ]
+position = Vector2( 994.558, 36.1001 )
 
-[node name="knight" parent="." index="14" instance=ExtResource( 9 )]
+[node name="LifeCounter" parent="UI" index="1" instance=ExtResource( 11 )]
 
-position = Vector2( 330, 184 )
+position = Vector2( 42.4176, 36.1001 )
+
+[node name="Tween" type="Tween" parent="." index="14"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="coin_picked_up" from="Snake" to="." method="_on_Snake_coin_picked_up"]
 
 [connection signal="crashed" from="Snake" to="." method="_on_Snake_crashed"]
 
 [connection signal="direction_changed" from="Snake" to="." method="_on_Snake_direction_changed"]
+
+[connection signal="emit_coins" from="Snake" to="." method="_on_Snake_emit_coins"]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 
 

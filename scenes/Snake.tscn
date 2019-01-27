@@ -30,7 +30,9 @@ height = 33.2631
 
 [node name="snake" type="Node2D"]
 
+z_index = 2
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="head" type="Area2D" parent="." index="0"]
 

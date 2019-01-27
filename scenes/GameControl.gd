@@ -16,5 +16,8 @@ func _process(delta):
 		get_parent().get_node("Snake").speed += 1
 	if Input.is_key_pressed(KEY_W) and get_parent().get_node("Snake").speed > 1 :
 		get_parent().get_node("Snake").speed -= 1
+	if Input.is_key_pressed(KEY_G) :
+		get_parent().grow()	
+	
 		
 		

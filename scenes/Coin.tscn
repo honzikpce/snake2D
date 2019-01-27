@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://img/items/Coin.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "rotation"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("coin_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 20 ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="Coin" type="Area2D"]
+
+z_index = 3
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 3
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="coin_sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 0.902527, 0.902496 )
+z_index = 3
+texture = ExtResource( 1 )
+vframes = 11
+hframes = 2
+frame = 8
+_sections_unfolded = [ "Animation", "Offset", "Z Index" ]
+
+[node name="animplayer" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/rotation = SubResource( 1 )
+blend_times = [  ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+visible = false
+position = Vector2( -0.1719, 0.972434 )
+scale = Vector2( 1.31629, 1.46945 )
+shape = SubResource( 2 )
+
+

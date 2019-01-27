@@ -45,15 +45,18 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 1 )
 vframes = 61
 hframes = 5
-frame = 40
-_sections_unfolded = [ "Animation" ]
+frame = 224
+_sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-scale = Vector2( 3.92308, 3.6716 )
+visible = false
+position = Vector2( -2.70752, -2.7075 )
+scale = Vector2( 3.96328, 4.12769 )
 shape = SubResource( 1 )
 
 [node name="animplayer" type="AnimationPlayer" parent="." index="2"]

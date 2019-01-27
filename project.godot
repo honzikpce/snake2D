@@ -28,4 +28,7 @@ quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 quality/filters/use_nearest_mipmap_filter=true
+limits/buffers/blend_shape_max_buffer_size_kb=8192
+limits/buffers/canvas_polygon_buffer_size_kb=256
+limits/buffers/canvas_polygon_index_buffer_size_kb=256
 environment/default_environment="res://default_env.tres"
