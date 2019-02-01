@@ -6,7 +6,7 @@
 [ext_resource path="res://img/level/walls.png" type="Texture" id=4]
 [ext_resource path="res://scenes/GameControl.gd" type="Script" id=5]
 [ext_resource path="res://fonts/GEEKABYTE.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://audio/snake_adventure.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/Chinese_2.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/knight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/CoinCounter.tscn" type="PackedScene" id=10]
@@ -42,6 +42,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 position = Vector2( 511, 665.493 )
 z_index = 0
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+speed = 150
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
@@ -217,9 +218,9 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="knight" parent="." index="12" instance=ExtResource( 9 )]
 
-position = Vector2( 322.78, 287.788 )
+position = Vector2( 343.292, 291.3 )
 rotation = 4.71239
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="UI" type="Node2D" parent="." index="13"]
 

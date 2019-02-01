@@ -1,5 +1,7 @@
 extends Node2D
 
+export (float)var  speed = 150
+
 signal direction_changed(corner)
 signal emit_coins(position, number)
 signal coin_picked_up(coin)
@@ -12,13 +14,15 @@ var direction_changed_bool = false
 onready var rotate_tween = get_node('tween')
 onready var snakeHead = get_node('head')
 
-var speed = 150
+#var speed = 150
 var rotationTime = 0.2
 
 func reset() :
 	snakeHead.rotation_degrees = 0 # todo
 	if rotate_tween.is_active():
 		rotate_tween.stop_all()
+		
+	speed = 150
 
 func _ready():
 	$head/Sprite.z_index = 100
@@ -26,7 +30,9 @@ func _ready():
 	$head/animplayer.play("head_animation")
 	
 func _process(delta):
-	
+	# IF SHANE IS NOT MOVING IT AIN'T DO ANYTHING !!!
+	if speed == 0 :
+		return
 	# process input and adjust direction if controls pressed
 	if Input.is_action_just_pressed("ui_up") and cur_direction.x != 0 :
 		if cur_direction.x == 1 : # moves right
@@ -85,4 +91,23 @@ func _on_head_area_entered(area) :
 		if area.name.find("barrel",0) == 0 :
 			emit_signal("emit_coins", area.position, 5)
 		player.play("anim")
+		
+	# enemy attacking snake
+	if area.get_collision_layer_bit(5) :
+		var player = area.get_node("../animplayer")
+		player.play("hit")
+		emit_signal('crashed')
+		
+	
+	# eating enemy
+	if area.get_collision_layer_bit(6) :
+		var player = area.get_node("../animplayer")
+		emit_signal("emit_coins", area.get_parent().position, 10)
+		
+		area.get_parent().remove_child(area.get_node("../attack"))
+		area.get_parent().remove_child(area)
+		player.play("death")
+		
+		print("dying")
+		
 		

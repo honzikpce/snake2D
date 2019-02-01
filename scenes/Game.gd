@@ -107,15 +107,21 @@ func game_init():
 
 func _on_Snake_crashed():
 	label.visible = true
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 	lives -= 1
 	if lives < 0 :
 		lives = 0
+	for i in range (0,6,2):
+		$Tween.interpolate_property($Snake, "modulate", Color(1.0,1.0,1.0,1.0), Color(1.0,0.4,1.0,0.4), 0.1, Tween.TRANS_LINEAR, 0, i * 0.1)
+		$Tween.interpolate_property($Snake, "modulate", Color(1.0,0.4,0.4,1.0), Color(1.0,1.0,1.0,1.0), 0.1, Tween.TRANS_LINEAR, 0, (i + 1) * 0.1)
 		
+	$Tween.interpolate_property($Snake, "speed", 150.0, 0.0, 0.1, Tween.TRANS_QUINT, 0, 0)
 	
-	title_tween.interpolate_property(label, 'rect_position', Vector2(label.rect_position.x, -200.0), label.rect_position, 1.0, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0)
-	title_tween.start()
+	$Tween.start()
+	
+	#title_tween.interpolate_property(label, 'rect_position', Vector2(label.rect_position.x, -200.0), label.rect_position, 1.0, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0)
+	#title_tween.start()
 	
 	
 	

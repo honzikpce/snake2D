@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chinese_2.ogg-f0ba966ceaee78c5c836b43ae070ec3a.oggstr"
+
+[deps]
+
+source_file="res://audio/Chinese_2.ogg"
+dest_files=[ "res://.import/Chinese_2.ogg-f0ba966ceaee78c5c836b43ae070ec3a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
