@@ -1,38 +1,22 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=2]
-[ext_resource path="res://img/level/floor.jpg" type="Texture" id=3]
-[ext_resource path="res://img/level/walls.png" type="Texture" id=4]
-[ext_resource path="res://scenes/GameControl.gd" type="Script" id=5]
-[ext_resource path="res://fonts/GEEKABYTE.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://audio/Chinese_2.ogg" type="AudioStream" id=7]
-[ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/knight.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/CoinCounter.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/LifeCounter.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/GameControl.gd" type="Script" id=3]
+[ext_resource path="res://audio/Chinese_2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/knight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/CoinCounter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/LifeCounter.tscn" type="PackedScene" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 13.4529, 10 )
-
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="DynamicFont" id=3]
-
-size = 80
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Resource", "Settings" ]
-
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
@@ -42,201 +26,74 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 position = Vector2( 511, 665.493 )
 z_index = 0
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-speed = 150
 
-[node name="Floor" type="Sprite" parent="." index="1"]
-
-position = Vector2( 1, -1 )
-scale = Vector2( 0.535, 0.555 )
-texture = ExtResource( 3 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="walls-area" type="Area2D" parent="." index="2"]
-
-scale = Vector2( 0.535, 0.555 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 4
-collision_mask = 3
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Pickable", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls-area" index="0"]
-
-visible = false
-position = Vector2( 396.911, 90.6408 )
-scale = Vector2( 30.8614, 7.97237 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls-area" index="1"]
-
-visible = false
-position = Vector2( 396.911, 991.542 )
-scale = Vector2( 30.8614, 7.97237 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls-area" index="2"]
-
-visible = false
-position = Vector2( 1516.54, 85.2354 )
-scale = Vector2( 30.8614, 7.97237 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="walls-area" index="3"]
-
-visible = false
-position = Vector2( 1510.93, 987.938 )
-scale = Vector2( 30.8614, 7.97237 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="walls-area" index="4"]
-
-visible = false
-position = Vector2( 145.699, 547.329 )
-scale = Vector2( 7.98131, 37.6969 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="walls-area" index="5"]
-
-visible = false
-position = Vector2( 1704.58, 536.519 )
-scale = Vector2( 7.98131, 37.6969 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Walls" type="Sprite" parent="walls-area" index="6"]
-
-z_index = 101
-texture = ExtResource( 4 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="SnakeTrail" type="Path2D" parent="." index="3"]
+[node name="SnakeTrail" type="Path2D" parent="." index="1"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="title_tween" type="Tween" parent="." index="4"]
-
-pause_mode = 2
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-_sections_unfolded = [ "Pause" ]
-
-[node name="GameControl" type="Node2D" parent="." index="5"]
+[node name="GameControl" type="Node2D" parent="." index="2"]
 
 pause_mode = 2
 position = Vector2( -51.4425, 52.9924 )
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="Label" type="Label" parent="." index="6"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
 
-pause_mode = 2
-visible = false
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = 100.0
-margin_right = 960.0
-margin_bottom = 203.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.882812, 0.708395, 0.0241394, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "! Boom !"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Mouse", "Pause", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
-
-stream = ExtResource( 7 )
+stream = ExtResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="barrel1" parent="." index="8" instance=ExtResource( 8 )]
+[node name="barrel1" parent="." index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 318.782, 166.787 )
+position = Vector2( 245.782, 180.787 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="barrel2" parent="." index="9" instance=ExtResource( 8 )]
+[node name="barrel2" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 684.325, 172.837 )
+position = Vector2( 778.325, 179.837 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 
-[node name="barrel6" parent="." index="10" instance=ExtResource( 8 )]
+[node name="barrel6" parent="." index="6" instance=ExtResource( 5 )]
 
-position = Vector2( 681.921, 411.865 )
+position = Vector2( 787.921, 424.865 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="barrel3" parent="." index="11" instance=ExtResource( 8 )]
+[node name="barrel3" parent="." index="7" instance=ExtResource( 5 )]
 
-position = Vector2( 317.499, 417.309 )
+position = Vector2( 254.499, 418.309 )
 scale = Vector2( 0.8, 0.8 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="knight" parent="." index="12" instance=ExtResource( 9 )]
+[node name="knight" parent="." index="8" instance=ExtResource( 6 )]
 
-position = Vector2( 343.292, 291.3 )
+position = Vector2( 218.292, 293.3 )
 rotation = 4.71239
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="UI" type="Node2D" parent="." index="13"]
+[node name="UI" type="Node2D" parent="." index="9"]
 
 editor/display_folded = true
 z_index = 500
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="CoinCounter" parent="UI" index="0" instance=ExtResource( 10 )]
+[node name="CoinCounter" parent="UI" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 994.558, 36.1001 )
 
-[node name="LifeCounter" parent="UI" index="1" instance=ExtResource( 11 )]
+[node name="LifeCounter" parent="UI" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 42.4176, 36.1001 )
 
-[node name="Tween" type="Tween" parent="." index="14"]
+[node name="Tween" type="Tween" parent="." index="10"]
 
 repeat = false
 playback_process_mode = 1

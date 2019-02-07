@@ -33,6 +33,7 @@ height = 33.2631
 z_index = 2
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
+speed = 150
 
 [node name="head" type="Area2D" parent="." index="0"]
 

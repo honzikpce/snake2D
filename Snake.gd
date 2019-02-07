@@ -8,7 +8,7 @@ signal coin_picked_up(coin)
 signal crashed()
 
 var cur_direction = Vector2(0, -1)
-var cur_postion = Vector2(100,100)
+var cur_postion = Vector2(0,0)
 var direction_changed_bool = false
 
 onready var rotate_tween = get_node('tween')
@@ -18,7 +18,7 @@ onready var snakeHead = get_node('head')
 var rotationTime = 0.2
 
 func reset() :
-	snakeHead.rotation_degrees = 0 # todo
+	#snakeHead.rotation_degrees = 0 # todo
 	if rotate_tween.is_active():
 		rotate_tween.stop_all()
 		
@@ -30,7 +30,7 @@ func _ready():
 	$head/animplayer.play("head_animation")
 	
 func _process(delta):
-	# IF SHANE IS NOT MOVING IT AIN'T DO ANYTHING !!!
+	# IF SNAKE IS NOT MOVING IT AIN'T DO ANYTHING !!!
 	if speed == 0 :
 		return
 	# process input and adjust direction if controls pressed

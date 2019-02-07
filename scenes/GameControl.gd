@@ -17,6 +17,8 @@ func _process(delta):
 		get_parent().get_node("Snake").speed -= 1
 	if Input.is_key_pressed(KEY_G) :
 		get_parent().grow()	
+	if Input.is_key_pressed(KEY_ESCAPE) :
+		self.get_parent().emit_signal("menu_clicked")
 	
 		
 		

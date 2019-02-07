@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/spawn_point.gd" type="Script" id=1]
+[ext_resource path="res://img/snake/head animation.png" type="Texture" id=2]
+
+[node name="spawn_point" type="Node2D"]
+
+position = Vector2( 210.907, 371.966 )
+rotation = 3.14159
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+spawn_direction = Vector2( 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+rotation = 1.5708
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+vframes = 27
+hframes = 5
+frame = 11
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+
