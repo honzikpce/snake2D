@@ -6,6 +6,7 @@ signal direction_changed(corner)
 signal emit_coins(position, number)
 signal coin_picked_up(coin)
 signal crashed()
+signal eat()
 
 var cur_direction = Vector2(0, -1)
 var cur_postion = Vector2(0,0)
@@ -15,7 +16,7 @@ onready var rotate_tween = get_node('tween')
 onready var snakeHead = get_node('head')
 
 #var speed = 150
-var rotationTime = 0.2
+var rotationTime = 0.1
 
 func reset() :
 	#snakeHead.rotation_degrees = 0 # todo
@@ -25,7 +26,7 @@ func reset() :
 	speed = 150
 
 func _ready():
-	$head/Sprite.z_index = 100
+	$head/Sprite.z_index = 99
 	
 	$head/animplayer.play("head_animation")
 	
@@ -79,13 +80,14 @@ func _process(delta):
 
 func _on_head_area_entered(area) :
 	
-	# walls and body
+	# body and walls or traps
 	if area.get_collision_layer_bit(1) or area.get_collision_layer_bit(2) :
 		emit_signal('crashed')
 	# pickable
 	if area.get_collision_layer_bit(3) :
 		emit_signal('coin_picked_up', area) # if it is coin -todo
-	# traps
+		
+	# breakable
 	if area.get_collision_layer_bit(4) :
 		var player = area.get_node("animplayer")
 		if area.name.find("barrel",0) == 0 :
@@ -98,16 +100,17 @@ func _on_head_area_entered(area) :
 		player.play("hit")
 		emit_signal('crashed')
 		
-	
 	# eating enemy
 	if area.get_collision_layer_bit(6) :
 		var player = area.get_node("../animplayer")
 		emit_signal("emit_coins", area.get_parent().position, 10)
+		emit_signal("eat")
 		
+		
+		# disable another collision with mob's attack shape
+		area.get_node("../attack/attack_shape").disabled = true
 		area.get_parent().remove_child(area.get_node("../attack"))
 		area.get_parent().remove_child(area)
 		player.play("death")
-		
-		print("dying")
 		
 		

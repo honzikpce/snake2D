@@ -1,14 +1,47 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://img/level/02/walls.png" type="Texture" id=1]
-[ext_resource path="res://img/level/02/floor.png" type="Texture" id=2]
-[ext_resource path="res://scenes/spawn_point.tscn" type="PackedScene" id=3]
-[ext_resource path="res://img/level/02/flags_animation1_00000.png" type="Texture" id=4]
+[ext_resource path="res://scenes/level02.gd" type="Script" id=1]
+[ext_resource path="res://img/level/02/walls.png" type="Texture" id=2]
+[ext_resource path="res://img/level/02/floor.png" type="Texture" id=3]
+[ext_resource path="res://scenes/spawn_point.tscn" type="PackedScene" id=4]
+[ext_resource path="res://img/level/02/flag.png" type="Texture" id=5]
+[ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 4.60564, 3.73117 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "flags"
+length = 6.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("flag_south:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 148 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("flag_north:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.65, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 108, 40, 108 ]
+}
 
 [node name="level" type="Area2D" index="0"]
 
@@ -21,6 +54,7 @@ collision_layer = 4
 collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
@@ -30,7 +64,7 @@ __meta__ = {
 
 scale = Vector2( 0.535, 0.555 )
 z_index = 101
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
@@ -41,7 +75,7 @@ __meta__ = {
 
 position = Vector2( 0, 1.62613 )
 scale = Vector2( 0.535, 0.555 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
@@ -50,6 +84,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
 position = Vector2( 213.388, 10.3181 )
 scale = Vector2( 42.0929, 7.97237 )
 shape = SubResource( 1 )
@@ -57,6 +92,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="3"]
 
+visible = false
 position = Vector2( 208.775, 588.107 )
 scale = Vector2( 41.8934, 7.97237 )
 shape = SubResource( 1 )
@@ -64,6 +100,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="4"]
 
+visible = false
 position = Vector2( 680.078, -23.9513 )
 scale = Vector2( 75.0649, 7.97237 )
 shape = SubResource( 1 )
@@ -71,6 +108,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="5"]
 
+visible = false
 position = Vector2( 720.136, 625.216 )
 scale = Vector2( 67.1924, 7.97237 )
 shape = SubResource( 1 )
@@ -78,6 +116,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="." index="6"]
 
+visible = false
 position = Vector2( -2.31128, 310.603 )
 scale = Vector2( 7.98131, 72.4063 )
 shape = SubResource( 1 )
@@ -85,6 +124,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." index="7"]
 
+visible = false
 position = Vector2( 536.621, 495.4 )
 scale = Vector2( 34.3129, 34.5049 )
 shape = SubResource( 1 )
@@ -92,6 +132,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="." index="8"]
 
+visible = false
 position = Vector2( 531.069, 121.574 )
 scale = Vector2( 31.8797, 34.5049 )
 shape = SubResource( 1 )
@@ -99,30 +140,98 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="." index="9"]
 
+visible = false
 position = Vector2( 1062.41, 276.659 )
 scale = Vector2( 7.98131, 87.8948 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="spawn_point" parent="." index="10" instance=ExtResource( 3 )]
+[node name="enemies" type="Node2D" parent="." index="10"]
 
-position = Vector2( 843.82, 279.435 )
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="11"]
+[node name="spawned" type="Node2D" parent="enemies" index="0"]
 
-position = Vector2( 144.4, 559.551 )
-scale = Vector2( 0.6, 0.6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="spawns" type="Node2D" parent="enemies" index="1"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="spawn_point" parent="enemies/spawns" index="0" instance=ExtResource( 4 )]
+
+modulate = Color( 1, 0.335938, 0.335938, 1 )
+position = Vector2( 76.8569, 519.913 )
+
+[node name="spawn_point2" parent="enemies/spawns" index="1" instance=ExtResource( 4 )]
+
+modulate = Color( 1, 0.335938, 0.335938, 1 )
+position = Vector2( 77.1602, 83.0695 )
+rotation = 0.0
+
+[node name="spawn_point3" parent="enemies/spawns" index="2" instance=ExtResource( 4 )]
+
+modulate = Color( 1, 0.335938, 0.335938, 1 )
+position = Vector2( 210.591, 296.732 )
+rotation = 4.71239
+
+[node name="spawn_point" parent="." index="11" instance=ExtResource( 4 )]
+
+modulate = Color( 0.269531, 0.417908, 1, 1 )
+position = Vector2( 866.82, 156.207 )
+
+[node name="flag_south" type="Sprite" parent="." index="12"]
+
+position = Vector2( 141.957, 563.22 )
+scale = Vector2( 1.2, 1.2 )
 z_index = 101
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+texture = ExtResource( 5 )
+vframes = 12
+hframes = 14
+frame = 4
+_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
-[node name="Sprite2" type="Sprite" parent="." index="12"]
+[node name="flag_north" type="Sprite" parent="." index="13"]
 
-position = Vector2( 143.743, 38.4779 )
-scale = Vector2( 0.6, 0.6 )
+position = Vector2( 139.505, 39.7823 )
+scale = Vector2( 1.2, 1.2 )
 z_index = 101
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 flip_v = true
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+vframes = 12
+hframes = 14
+frame = 100
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
+
+[node name="animplayer" type="AnimationPlayer" parent="." index="14"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/flags = SubResource( 2 )
+blend_times = [  ]
+
+[node name="barrel" parent="." index="15" instance=ExtResource( 6 )]
+
+position = Vector2( 760.958, 75.2194 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="barrel2" parent="." index="16" instance=ExtResource( 6 )]
+
+position = Vector2( 973.958, 70.2194 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="barrel3" parent="." index="17" instance=ExtResource( 6 )]
+
+position = Vector2( 962.958, 525.22 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="barrel4" parent="." index="18" instance=ExtResource( 6 )]
+
+position = Vector2( 765.958, 526.22 )
+scale = Vector2( 1.2, 1.2 )
 
 

@@ -43,6 +43,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 vframes = 20
 _sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility" ]

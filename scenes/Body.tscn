@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://img/snake/resized tile.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Body.gd" type="Script" id=1]
+[ext_resource path="res://img/snake/resized tile.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -17,10 +18,12 @@ rotate = true
 cubic_interp = true
 loop = true
 lookahead = 4.0
-_sections_unfolded = [ "Z Index" ]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
+position = Vector2( 0, -0.0944691 )
 rotation = 1.5708
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -36,15 +39,17 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="Area2D" index="0"]
 
 rotation = 1.5708
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-position = Vector2( -0.734638, -0.562505 )
-scale = Vector2( 1.29497, 0.549457 )
+position = Vector2( 0.265362, -0.616287 )
+scale = Vector2( 0.973471, 0.172507 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 

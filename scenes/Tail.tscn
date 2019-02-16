@@ -6,7 +6,7 @@
 
 custom_solver_bias = 0.0
 radius = 10.0
-height = 20.0
+height = 3.05255
 
 [sub_resource type="Animation" id=2]
 
@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [node name="tail" type="PathFollow2D"]
 
-position = Vector2( 10, 0 )
+position = Vector2( 15, 0 )
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -41,7 +41,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
-position = Vector2( 21, -4.08885e-06 )
+position = Vector2( -2.61795, -0.647068 )
 rotation = 1.5708
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -52,21 +52,22 @@ collision_layer = 2
 collision_mask = 13
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="Area2D" index="0"]
 
-position = Vector2( -1.80818, 61.7003 )
+position = Vector2( -0.161258, 23.2587 )
 rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 vframes = 27
 hframes = 5
-_sections_unfolded = [ "Animation", "Transform" ]
+_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-position = Vector2( 0.69315, 59.9461 )
-scale = Vector2( 1.48307, 1.15974 )
+position = Vector2( 1.36944, 12.7271 )
+scale = Vector2( 1.05192, 1.2145 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -14,5 +14,16 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="music" type="AudioStreamPlayer2D" parent="." index="1"]
+
+stream = null
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
